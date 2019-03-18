@@ -2,7 +2,8 @@
 <!doctype html>
 <?php
      session_start();
-     
+     include_once('../../INC/db.inc.php');
+
      if(!isset($_SESSION['id'])){
       header('location: Signin.php');
      }
@@ -128,49 +129,39 @@
   <tbody>
    
   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+  <?php 
+     
+     $fk_aid = $_SESSION['id'];
+  
+  
+     $res = mysqli_query($conn,"SELECT * FROM items  WHERE fk_aid = '$fk_aid' ");
+  
+  
+  
+      
+      while($row = mysqli_fetch_assoc($res)) {
+        
+        
+      echo   '
+      
+       <tr>
+        <th scope="row">'.$row["id"].'</th>
+        <td>'.$row["name"].'</td>
+        <td>'.$row["qty"].'</td>
+        <td><a href="itemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+        </tr>
+      ' ; 
+  
+    
+  
+      }
+       
+       
+       
+       ?>
 
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+
+   
   </tbody>
 </table>
 
