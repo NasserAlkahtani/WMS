@@ -1,0 +1,47 @@
+body{
+    width: 100%;
+    height: 100%;
+    padding: 0; 
+    margin: 0 ;
+    
+}
+  
+.hide{
+    display: none;
+}
+
+.FORM{
+    position: absolute;
+    top: 20%; 
+    width: 80%; 
+    left: 10%; 
+    right: 10%;
+}
+
+.INPUT{
+    margin-top: 25px; 
+    margin-bottom: 25px;
+}
+
+
+.erorr{
+    color: red;
+    
+}
+
+@media (min-width:650px) {   
+
+    .FORM{
+        position: absolute;
+        top: 20%; 
+        width: 30%; 
+        left: 35%; 
+        right: 35%;
+    }
+    
+    .INPUT{
+        margin-top: 25px; 
+        margin-bottom: 25px;
+    }
+  
+}
