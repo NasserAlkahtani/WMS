@@ -2,7 +2,7 @@
 <!doctype html>
 <?php
      session_start();
-     
+     include_once('../../INC/db.inc.php');
      if(!isset($_SESSION['id'])){
       header('location: Signin.php');
      }
@@ -41,7 +41,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="../../STYLES/Home.css" rel="stylesheet">
+    <link href="../../STYLES/Myaccount.css" rel="stylesheet">
     <link href="../../STYLES/GLOBAL.css" rel="stylesheet">
 
   </head>
@@ -68,7 +68,7 @@
               <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
             </a>
           </li>
-          <li class="nav-item NAV_ITEM">
+          <li class="nav-item NAV_ITEM SELECTED">
             <a class="nav-link" href="Employees.php">
             <img src="../../images/icons/group.png" class="icon">Employees
             </a>
@@ -78,8 +78,7 @@
             <img src="../../images/icons/new-user.png" class="icon">Create Employee
             </a>
           </li>
-    
-          <li class="nav-item NAV_ITEM SELECTED">
+          <li class="nav-item NAV_ITEM">
             <a class="nav-link" href="Items.php">
             <img src="../../images/icons/items.png" class="icon">Items
             </a>
@@ -104,76 +103,89 @@
 
     </nav>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Items</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-          
-          </div>
-        
-        </div>
-      </div>
-
-          
-      <table class="table table-dark box_shadow">
-  <thead>
-    <tr>
-      <th scope="col">#id</th>
-      <th scope="col">Item Name</th>
-      <th scope="col">Qty</th>
-      <th scope="col">options</th>
-    </tr>
-  </thead>
-  <tbody>
+   <?php 
    
-  
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+   
+   
+   
+   
+   
+   $emId = $_GET['id'];
+   $name = ""; 
+   $uname = "" ; 
+   $pass = "" ; 
 
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-  </tbody>
-</table>
+   $res = mysqli_query($conn,"SELECT * FROM employees  WHERE id = '$emId' ");
 
+   while($row = mysqli_fetch_assoc($res)) {
+    
+    $name = $row['name']; 
+    $uname =  $row['uname'];
+    $pass = $row['password'];
+
+  }
+
+   
+
+
+   
+   
+   ?>
+
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="LESSITEMS_CARD card bg-dark box_shadow">
+
+
+<img class="Img" src="../../images/icons/account1.png">
+<h1 class="Name"> <?php echo $name ?> </h1>
+<h6 class="Atype">Accout Type : employee </h6>
+
+
+<form class="FORM">
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputEmail4">ID</label>
+<input <?php echo "value=".$emId?> type="email" readonly  class="form-control box_shadow" id="inputEmail4" placeholder="">
+</div>
+<div class="form-group col-md-6">
+<label for="inputPassword4">Name</label>
+<input <?php echo "value=".$name?>  type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
+</div>
+</div>
+<div class="form-group">
+<label for="inputAddress">User Name</label>
+<input <?php echo "value=".$uname?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="">
+</div>
+<div class="form-group">
+<label for="inputAddress2">Password</label>
+<input <?php echo "value=".$pass?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder="">
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputCity"></label>
+<input style="display:none" type="text" class="form-control box_shadow" id="inputCity">
+<a class="BTNupdate btn btn-danger box_shadow" href="https://www.youtube.com">Delete Accout</a>
+</div>
+<div class="form-group col-md-4">
+<label for="inputCity"></label>
+<input style="display:none" type="number" class="form-control box_shadow" id="inputCity">
+</div>
+<div class="form-group col-md-2">
+<input type="submit" value="update" class="form-control box_shadow btn btn-info" id="inputZip">
+</div>
+</div>
+<div class="form-group">
+<div class="form-check">
+
+</label>
+</div>
+</div>
+</form>
+
+</div>
+      
+     
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

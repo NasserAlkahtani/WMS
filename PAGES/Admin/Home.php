@@ -122,8 +122,18 @@ Wharehouse cpacity
    $NumItems = 0  ;
    $Whc = $_SESSION["capacity"];
 
-   $res = mysqli_query($conn,"SELECT * FROM items WHERE fk_aid = '$fk_aid' ");
 
+   $res = mysqli_query($conn,"SELECT * FROM items WHERE fk_aid = '$fk_aid' ");
+   $res1 = mysqli_query($conn,"SELECT Cpac FROM admins WHERE id = '$fk_aid' ");
+
+   while($row1 = mysqli_fetch_assoc($res1)) {
+      
+       $Whc = $row1['Cpac'];
+
+   }
+
+
+   
     
     while($row = mysqli_fetch_assoc($res)) {
       
@@ -134,7 +144,6 @@ Wharehouse cpacity
 
     }
 
-    mysqli_close($conn);
 
 
 
@@ -162,16 +171,53 @@ Wharehouse cpacity
 Number of employees
 
 
-<div class="NUM_EMPLOYEES">90</div>
+<div class="NUM_EMPLOYEES">
+
+
+<?php
+
+  $fk_aid = $_SESSION['id'];
+   $res2 = mysqli_query($conn,"SELECT COUNT(*) FROM Employees WHERE fk_aid = '$fk_aid' ");
+   while($row = mysqli_fetch_assoc($res2)) {
+
+
+     $NoEmp=$row['COUNT(*)'] ;
+     echo $NoEmp;
+}
+
+
+
+   ?>
 
 
 </div>
+
+
+</div>
+
 
 <div style="color: rgb(255, 174, 0);"class="WHCAPACITY_CARD card bg-dark box_shadow">
 
 Number of items
 
-<div class="NUM_ITEMS">15,538</div>
+<div class="NUM_ITEMS">
+
+
+<?php
+
+  $fk_aid = $_SESSION['id'];
+   $res3 = mysqli_query($conn,"SELECT COUNT(*) FROM Items WHERE fk_aid = '$fk_aid' ");
+   while($row = mysqli_fetch_assoc($res3)) {
+
+
+     $NoItems=$row['COUNT(*)'] ;
+     echo $NoItems;
+}
+
+
+
+   ?>
+</div>
 
 </div>
 
@@ -257,7 +303,10 @@ Items with Qty less than 10
 
 
 
+    
 
+
+   
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>

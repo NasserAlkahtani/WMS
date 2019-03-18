@@ -2,7 +2,7 @@
 <!doctype html>
 <?php
      session_start();
-     
+     include_once('../../INC/db.inc.php');
      if(!isset($_SESSION['id'])){
       header('location: Signin.php');
      }
@@ -65,7 +65,7 @@
         <ul class="nav flex-column">
           <li class="nav-item NAV_ITEM">
             <a style="color:white;" class="nav-link" href="Home.php">
-              <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
+              <img src="../../images/icons/dashboard.png" class="icon">Dashboard
             </a>
           </li>
           <li class="nav-item NAV_ITEM">
@@ -95,7 +95,7 @@
           </li>
           <li class="nav-item NAV_ITEM SELECTED">
             <a class="nav-link" href="Myaccount.php">
-              <img src="../../images/icons/account.png" class="icon">My Account 
+              <img src="../../images/icons/account.png" class="icon">My Account
             </a>
           </li>
         </ul>
@@ -109,41 +109,58 @@
       </div>
 
       <div class="LESSITEMS_CARD card bg-dark box_shadow">
-
+        <?php
+        $id = $_SESSION['id'];
+        $fname='';
+        $lname='';
+        $email='';
+        $whname='';
+        $password='';
+        $capacity=0;
+        $res = mysqli_query($conn,"SELECT * FROM admins WHERE id = '$id' ");
+         while($row = mysqli_fetch_assoc($res)) {
+           $fname=$row['fname'];
+           $lname=$row['lname'];
+           $email=$row['email'];
+           $whname=$row['whname'];
+           $password=$row['password'];
+           $capacity=(int)$row['Cpac'];
+         }
+        ?>
 
            <img class="Img" src="../../images/icons/account1.png">
-           <h1 class="Name"> Nasser Alkahtani </h1>
+           <h1 class="Name"> <?php echo $fname .' '. $lname ?></h1>
            <h6 class="Atype">Accout Type : administrator</h6>
 
 
-           <form class="FORM">
- 
+<form class="FORM" action="../../INC/updateAdmin.inc.php" method="post">
+
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">First Name</label>
-      <input type="email" class="form-control box_shadow" id="inputEmail4" placeholder="">
+      <input name="fname" type="text" value="<?php echo $fname ?>" class="form-control box_shadow" id="inputEmail4" placeholder="">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Last Name</label>
-      <input type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
+      <input name="lname" type="text" value="<?php echo $lname ?>" class="form-control box_shadow" id="inputPassword4" placeholder="">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">Email</label>
-    <input type="text" class="form-control box_shadow" id="inputAddress" placeholder="">
+    <input name="email" type="email" value="<?php echo $email ?>" class="form-control box_shadow" id="inputAddress" placeholder="">
   </div>
   <div class="form-group">
     <label for="inputAddress2">Password</label>
-    <input type="text" class="form-control box_shadow" id="inputAddress2" placeholder="">
+    <input name="password" type="text" value="<?php echo $password ?>" class="form-control box_shadow" id="inputAddress2" placeholder="">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Wherehouse name</label>
-      <input type="text" class="form-control box_shadow" id="inputCity">
+      <input name="whname" type="text" value="<?php echo $whname ?>" class="form-control box_shadow" id="inputCity">
     </div>
     <div class="form-group col-md-4">
     <label for="inputCity">Wherehouse Capacity</label>
-    <input type="number" class="form-control box_shadow" id="inputCity">
+    <input name="cpac" type="number" value="<?php echo $capacity ?>" class="form-control box_shadow" id="inputCity">
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Edit</label>
@@ -152,7 +169,7 @@
   </div>
   <div class="form-group">
     <div class="form-check">
-     
+
       </label>
     </div>
   </div>
