@@ -124,7 +124,7 @@ Wharehouse cpacity
 </div>
 
 <div style="color: rgb(68, 166, 223);"class="MAIN_CARD card bg-dark box_shadow">
-            Create spicific employee
+            Create spicific Item
 
             <form class="SPI_FORM">
   <div class="form-row">

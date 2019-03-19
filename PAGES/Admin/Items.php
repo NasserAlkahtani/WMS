@@ -136,35 +136,52 @@
   
      $res = mysqli_query($conn,"SELECT * FROM items  WHERE fk_aid = '$fk_aid' ");
   
-  
-  
-      
-      while($row = mysqli_fetch_assoc($res)) {
-        
-        
-      echo   '
-      
-       <tr>
-        <th scope="row">'.$row["id"].'</th>
-        <td>'.$row["name"].'</td>
-        <td>'.$row["qty"].'</td>
-        <td><a href="itemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
-        </tr>
-      ' ; 
-  
+
+     
+
+
+   if(mysqli_num_rows($res) > 0 ){
     
+    while($row = mysqli_fetch_assoc($res)) {
+      
+      
+    echo   '
+    
+     <tr>
+      <th scope="row">'.$row["id"].'</th>
+      <td>'.$row["name"].'</td>
+      <td>@'.$row["uname"].'</td>
+      <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+      </tr>
+    ' ; 
+
   
-      }
-       
-       
-       
-       ?>
 
-
-   
+    }
+  }   
+     
+     
+     ?>
+    
   </tbody>
 </table>
 
+
+<?php
+
+
+if(mysqli_num_rows($res) == 0 ){
+
+  echo "<h1 style='position: relative;
+  width: 100%;
+  top: 100%;
+  font-size: 50px;
+  text-align: center; '>You have no Items !</h1>";
+}
+
+
+
+?>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

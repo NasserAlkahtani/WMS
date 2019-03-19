@@ -286,9 +286,12 @@ Top 3 items in terms of Qty
   
     echo "<h1 style='position: relative;
     width: 100%;
+    margin-top:50px;
+    margin-bottom:50px;
     top: 100%;
-    font-size: 50px;
-    text-align: center; '>You have no Items with Qty!</h1>";
+    font-size: 30px;
+    color:white;
+    text-align: center;  '>You have no Items with Qty!</h1>";
   }
   
   
@@ -360,9 +363,12 @@ Items with Qty less than 10
   
     echo "<h1 style='position: relative;
     width: 100%;
+    margin-top:50px;
+    margin-bottom:50px;
     top: 100%;
-    font-size: 50px;
-    text-align: center; '>You have no Items less than with qty 10!</h1>";
+    font-size: 30px;
+    color:white;
+    text-align: center; '>You have no Items with Qty less than 10 !</h1>";
   }
   
   
