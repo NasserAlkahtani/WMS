@@ -2,7 +2,7 @@
 include_once('../INC/db.inc.php');
 
 
-
+session_start();
 
 
 
@@ -27,20 +27,11 @@ $Qty = 50 ;
         
         $i = $i + 1 ;
 
-        if($res){
-            echo "Employee".$i." Inserted";
-            echo "<br>";
-        }else{
-            echo "error" ;
-            echo "<br>";
-        }
         
     }
 
 
 
-    echo "Finish employees";
-echo "<br><br><br><br><br>";
 
 
     // counter 
@@ -52,7 +43,7 @@ echo "<br><br><br><br><br>";
         
         
         while($k < $NumOfItems ){
-            $name  = "Item - ".$K; 
+            $name  = "Item-".$k; 
             if($rowC == 7 ){
                 $rowC = 0 ;
             }
@@ -67,22 +58,25 @@ echo "<br><br><br><br><br>";
             $k = $k + 1 ;
 
 
-            if($res2){
-                echo "Item".$k." Inserted";
-                echo "<br>";
-            }else{
-                echo "error" ;
-                echo "<br>";
-            }
         }
 
 
   
 
+        $_SESSION["Msg"] = "
 
-        echo "Finish Items";
+<div class='alert alert-success' role='alert'>
 
+Data base seeded successfully 
 
+</div>
+
+" ;
+        header('location: ../PAGES/DB.php');
+
+       
+
+ 
 
 
 

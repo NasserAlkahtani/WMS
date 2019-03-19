@@ -112,18 +112,22 @@
 
         <?php 
      
-     if($_SESSION['Msg'] != "" ){
 
-      echo $_SESSION['Msg'] ; 
-
-      $_SESSION["Msg"] = "";
-
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
      }
+      
 
      
      ?>
 
-     
+
       </div>
 
       <div class="LESSITEMS_CARD card bg-dark box_shadow">

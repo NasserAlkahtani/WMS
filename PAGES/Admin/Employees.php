@@ -134,7 +134,7 @@
    $res = mysqli_query($conn,"SELECT * FROM employees  WHERE fk_aid = '$fk_aid' ");
 
 
-
+   if(mysqli_num_rows($res) > 0 ){
     
     while($row = mysqli_fetch_assoc($res)) {
       
@@ -152,7 +152,7 @@
   
 
     }
-     
+  }   
      
      
      ?>
@@ -160,6 +160,22 @@
   </tbody>
 </table>
 
+
+<?php
+
+
+if(mysqli_num_rows($res) == 0 ){
+
+  echo "<h1 style='position: relative;
+  width: 100%;
+  top: 100%;
+  font-size: 50px;
+  text-align: center; '>You have no employees !</h1>";
+}
+
+
+
+?>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>

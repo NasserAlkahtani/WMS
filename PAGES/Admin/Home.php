@@ -237,28 +237,70 @@ Top 3 items in terms of Qty
   <tbody>
    
   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr> <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-   
-  </tbody>
-</table>
+  <?php 
+     
+     $fk_aid = $_SESSION['id'];
+  
+  
+     $res = mysqli_query($conn,"SELECT * FROM items  WHERE fk_aid = '$fk_aid' ORDER BY cast(qty as unsigned) DESC");
+  
+     
+     if(mysqli_num_rows($res) > 0 ){
+      
+     $counter = 0 ;
+
+
+      while($row = mysqli_fetch_assoc($res)) {
+        
+        if($counter == 3 ){
+          break;
+        }
+      echo   '
+      
+       <tr>
+        <th scope="row">'.$row["id"].'</th>
+        <td>'.$row["name"].'</td>
+        <td>'.$row["qty"].'</td>
+        <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+        </tr>
+      ' ; 
+  
+
+      $counter = $counter + 1;    
+  
+      }
+
+    }   
+       
+       
+       ?>
+      
+    </tbody>
+  </table>
+  
+  
+  <?php
+  
+  
+  if(mysqli_num_rows($res) == 0 ){
+  
+    echo "<h1 style='position: relative;
+    width: 100%;
+    top: 100%;
+    font-size: 50px;
+    text-align: center; '>You have no Items with Qty!</h1>";
+  }
+  
+  
+  
+  ?>
+
 
     </div>
+
+
+
+
 
 
     <div class="LESSITEMS_CARD card bg-dark box_shadow">
@@ -274,29 +316,58 @@ Items with Qty less than 10
       <th scope="col">options</th>
     </tr>
   </thead>
-  <tbody>
-   
+ 
   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr> <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-   
-  </tbody>
-</table>
+  <?php 
+     
+     $fk_aid = $_SESSION['id'];
+  
+  
+     $res = mysqli_query($conn,"SELECT * FROM items  WHERE fk_aid = '$fk_aid' AND qty < 10");
+  
+  
+     if(mysqli_num_rows($res) > 0 ){
+      
+      while($row = mysqli_fetch_assoc($res)) {
+        
+        
+      echo   '
+      
+       <tr>
+        <th scope="row">'.$row["id"].'</th>
+        <td>'.$row["name"].'</td>
+        <td>'.$row["qty"].'</td>
+        <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+        </tr>
+      ' ; 
+  
+    
+  
+      }
+    }   
+       
+       
+       ?>
+      
+    </tbody>
+  </table>
+  
+  
+  <?php
+  
+  
+  if(mysqli_num_rows($res) == 0 ){
+  
+    echo "<h1 style='position: relative;
+    width: 100%;
+    top: 100%;
+    font-size: 50px;
+    text-align: center; '>You have no Items less than with qty 10!</h1>";
+  }
+  
+  
+  
+  ?>
 
     </div>
 

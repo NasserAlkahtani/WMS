@@ -37,9 +37,9 @@
 
 .MAIN-DIV{
     position: relative;
-    width:50%;
-    left:25%;
-    right:25%;
+    width:30%;
+    left:35%;
+    right:35%;
     top:25%;
 }
 
@@ -73,16 +73,34 @@
 	</nav>
 
 
+    <?php 
+     
+     session_start();
+
+     if(isset($_SESSION['Msg'])){
+     if($_SESSION['Msg'] != "" ){
+
+      echo $_SESSION['Msg'] ; 
+
+      $_SESSION["Msg"] = "";
+
+     }
+    }
+     
+     ?>
+
+
+
  
                 <div class="MAIN-DIV">
                 
               
 <form  action="../DB/Seed.php" class="box_shadow">
-<button type="button" class="btn btn-success btn-lg btn-block">Seed DB</button>
+<button type="submit" class="btn btn-success btn-lg btn-block">Seed DB</button>
 </form>
 
 <form  action="../DB/Clear.php" class="box_shadow">
-<button type="button" class="btn btn-danger btn-lg btn-block">Clear DB</button>
+<button type="submit" class="btn btn-danger btn-lg btn-block">Clear DB</button>
 </form>
 
 
