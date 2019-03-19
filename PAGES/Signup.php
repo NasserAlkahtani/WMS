@@ -45,7 +45,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="Signup.php">Sign up</a>
 					</li>
-			
+					<li class="nav-item">
+						<a class="nav-link" href="DB.php">Data Base seeder</a>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -16,6 +16,15 @@ $res = mysqli_query($conn,"UPDATE admins
                            WHERE id = '$id' ");
 
 
+$_SESSION["Msg"] = "
+
+<div class='alert alert-success' role='alert'>
+
+Updated information successfully 
+
+</div>
+
+" ;
 
 header('location: ../PAGES/Admin/Myaccount.php');
 
