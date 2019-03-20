@@ -101,7 +101,22 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Employees</h1>
       </div>
+      <?php 
 
+
+if(isset($_SESSION['Msg'])){
+ if($_SESSION['Msg'] != "" ){
+
+  echo $_SESSION['Msg'] ; 
+
+  $_SESSION["Msg"] = "";
+
+ }
+}
+
+
+
+?>
 
       <form class="TOPITEMS_CARD">
       <input class="form-control form-control-dark w-100 SEARCH_BAR" type="text" placeholder="Search" aria-label="Search">

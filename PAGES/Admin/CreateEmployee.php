@@ -165,38 +165,59 @@ textarea{
         
       </div>
 
+      <?php 
+     
 
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+      
+     ?>
 
       <div style="color: rgb(68, 166, 223);"class="MAIN_CARD card bg-dark box_shadow">
             Create spicific employee
 
-            <form class="SPI_FORM">
+<form class="SPI_FORM" action="../../INC/CreateEmp.inc.php" method="post">
   <div class="form-row">
     <div class="col-7">
-      <input type="text" class="form-control" placeholder="Name">
+      <input name="name" type="text" class="form-control" placeholder="Name">
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="User name">
+      <input name="uname" type="text" class="form-control" placeholder="User name">
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Password ">
+      <input name="pass"type="text" class="form-control" placeholder="Password ">
     </div>
   </div>
 
-  <button type="button" class="BTNCreate btn btn-info">Create</button>
+  <button type="submit" class="BTNCreate btn btn-info">Create</button>
 
 </form>
 
 
       </div>
       
-      <div style="color: rgb(255, 174, 0);" class="MAIN_CARD card bg-dark box_shadow">
+      <div  style="color: rgb(255, 174, 0);" class="MAIN_CARD card bg-dark box_shadow">
         
        Generate Random Employee
-       <form class="SPI_FORM">
+       
+<form style="margin-bottom:57px;" class="SPI_FORM" action="../../INC/GenerateEmp.inc.php" method="post">
+  <div class="form-row">
+    <div class="col-7">
+      <input name="NumOfEmp" type="number" class="form-control" placeholder="Number of Employees">
+    </div>
+    <div class="col" >
+       <button type="submit" class=" btn btn-warning">Generate</button>
+    </div>
+  
+  </div>
 
-
-       <button type="button" class="BTNGene btn btn-warning">Generate</button>
 
 </form>
 

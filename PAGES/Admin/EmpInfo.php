@@ -97,13 +97,32 @@
 
 
     </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Employee information
+        
+        </h1>
+      </div>
 
-   <?php 
+      <?php 
+     
+
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+      
+
+     
+     ?>
    
    
-   
-   
-   
+   <?php
    
    $emId = $_GET['id'];
    $name = ""; 
@@ -128,7 +147,6 @@
    ?>
 
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="LESSITEMS_CARD card bg-dark box_shadow">
 
 
@@ -137,38 +155,50 @@
 <h6 class="Atype">Accout Type : employee </h6>
 
 
-<form class="FORM">
+<form action="../../INC/updateEmp.inc.php" method="post" class="FORM">
 <div class="form-row">
 <div class="form-group col-md-6">
 <label for="inputEmail4">ID</label>
-<input <?php echo "value=".$emId?> type="email" readonly  class="form-control box_shadow" id="inputEmail4" placeholder="">
+<input  <?php echo "value=".$emId?> type="email" readonly  class="form-control box_shadow" id="inputEmail4" placeholder="" name="id">
 </div>
+
 <div class="form-group col-md-6">
 <label for="inputPassword4">Name</label>
-<input <?php echo "value=".$name?>  type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
+<input <?php echo "value=".$name?>  type="text" class="form-control box_shadow" id="inputPassword4" placeholder=""  name="name">
 </div>
+
 </div>
+
 <div class="form-group">
 <label for="inputAddress">User Name</label>
-<input <?php echo "value=".$uname?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="">
+<input <?php echo "value=".$uname?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="" name = "uname" >
 </div>
+
 <div class="form-group">
 <label for="inputAddress2">Password</label>
-<input <?php echo "value=".$pass?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder="">
+<input <?php echo "value=".$pass?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="pass" >
 </div>
+
 <div class="form-row">
 <div class="form-group col-md-6">
 <label for="inputCity"></label>
 <input style="display:none" type="text" class="form-control box_shadow" id="inputCity">
-<a class="BTNupdate btn btn-danger box_shadow" href="https://www.youtube.com">Delete Accout</a>
-</div>
+<a class="BTNupdate btn btn-danger box_shadow"<?php
+echo 'href="../../INC/DeleteEmp.inc.php?id='.$emId.'"';
+
+ ?>
+>Delete Accout</a></div>
+
 <div class="form-group col-md-4">
 <label for="inputCity"></label>
 <input style="display:none" type="number" class="form-control box_shadow" id="inputCity">
 </div>
+
+
 <div class="form-group col-md-2">
 <input type="submit" value="update" class="form-control box_shadow btn btn-info" id="inputZip">
 </div>
+
 </div>
 <div class="form-group">
 <div class="form-check">

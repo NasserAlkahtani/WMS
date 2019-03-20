@@ -71,7 +71,9 @@
           if(isset($_SESSION["erorr"])){
 			  if($_SESSION["erorr"]== "worng user name or password")
 			  {
-            echo "<h6 class='erorr'> ".$_SESSION['erorr']."</h6>";
+			echo "<h6 class='erorr'> ".$_SESSION['erorr']."</h6>";
+			unset($_SESSION['erorr']);
+
 			  }
 		  
 		  }

@@ -7,7 +7,7 @@ session_start();
 
 
 // The admin id to seed info to his account 
-$AdminId  =  1 ;
+$AdminId  =  3 ;
 // The number of employees of the admin 
 $NumOfEmp = 30 ;
 // The number of Items of the admin wh  and qty of each item  
@@ -20,7 +20,7 @@ $Qty = 50 ;
 // counter 
     $i = 0 ;
     while($i < $NumOfEmp ){
-        $name  = "Employee".$i; 
+        $name  = "Employee-".$i; 
         $uname = $name.$AdminId;
         $pass  = "123" ;
         $res = mysqli_query($conn,"INSERT INTO `employees`(`fk_aid`, `name`, `uname`, `password`) VALUES ('$AdminId','$name','$uname','$pass')");

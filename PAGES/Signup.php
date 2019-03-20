@@ -67,6 +67,8 @@
 
 																													if(isset($_SESSION["erorr"])){
 																														echo "<h6 class='erorr'> ".$_SESSION['erorr']."</h6>";
+																														unset($_SESSION['erorr']);
+
 																													}
 
 																													?>

@@ -26,7 +26,7 @@ if($Pass1 == $Pass2){
                 }else{
 
                     
-                    $res2 = mysqli_query($conn,"INSERT INTO `admins` (`fname`, `lname`, `email`, `password` , `whname` ,`capacity` ) VALUES ('$Fname', '$Lname', '$Email', '$Pass1', '$Whname','$Capacity'); ");
+                    $res2 = mysqli_query($conn,"INSERT INTO `admins` (`fname`, `lname`, `email`, `password` , `whname` ,`Cpac` ) VALUES ('$Fname', '$Lname', '$Email', '$Pass1', '$Whname','$Capacity'); ");
 
                                     if($res2){
 

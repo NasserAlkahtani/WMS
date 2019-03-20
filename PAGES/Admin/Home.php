@@ -103,6 +103,25 @@
         <h1 class="h2">Dashboard</h1>
     
       </div>
+
+      <?php 
+
+
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+
+
+
+     ?>
+
+     
       <div style="color:rgb(226, 182, 154);" class="WHCAPACITY_CARD card bg-dark box_shadow">
 
 Wharehouse Capacity

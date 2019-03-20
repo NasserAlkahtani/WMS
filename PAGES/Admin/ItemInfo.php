@@ -65,10 +65,10 @@
         <ul class="nav flex-column">
           <li class="nav-item NAV_ITEM">
             <a style="color:white;" class="nav-link" href="Home.php">
-              <img src="../../images/icons/dashboard.png" class="icon">Dashboard
+              <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
             </a>
           </li>
-          <li class="nav-item NAV_ITEM">
+          <li class="nav-item NAV_ITEM SELECTED">
             <a class="nav-link" href="Employees.php">
             <img src="../../images/icons/group.png" class="icon">Employees
             </a>
@@ -88,9 +88,9 @@
             <img src="../../images/icons/plus.png" class="icon">Create Item
             </a>
           </li>
-          <li class="nav-item NAV_ITEM SELECTED">
+          <li class="nav-item NAV_ITEM">
             <a class="nav-link" href="Myaccount.php">
-              <img src="../../images/icons/account.png" class="icon">My Account
+              <img src="../../images/icons/account.png" class="icon">My Account 
             </a>
           </li>
         </ul>
@@ -98,105 +98,91 @@
 
     </nav>
 
-  
+   <?php 
+   
+   
+   
+   
+   
+   
+   $emId = $_GET['id'];
+   $name = ""; 
+   $uname = "" ; 
+   $pass = "" ; 
+
+   $res = mysqli_query($conn,"SELECT * FROM employees  WHERE id = '$emId' ");
+
+   while($row = mysqli_fetch_assoc($res)) {
+    
+    $name = $row['name']; 
+    $uname =  $row['uname'];
+    $pass = $row['password'];
+
+  }
+
+   
+
+
+   
+   
+   ?>
+
+
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">My Account
-        
-        </h1>
-      </div>
-
-      <?php 
-     
-
-     if(isset($_SESSION['Msg'])){
-      if($_SESSION['Msg'] != "" ){
- 
-       echo $_SESSION['Msg'] ; 
- 
-       $_SESSION["Msg"] = "";
- 
-      }
-     }
-      
-
-     
-     ?>
-
-     
-      <div class="LESSITEMS_CARD card bg-dark box_shadow">
-        <?php
-        $id = $_SESSION['id'];
-        $fname='';
-        $lname='';
-        $email='';
-        $whname='';
-        $password='';
-        $capacity=0;
-        $res = mysqli_query($conn,"SELECT * FROM admins WHERE id = '$id' ");
-         while($row = mysqli_fetch_assoc($res)) {
-           $fname=$row['fname'];
-           $lname=$row['lname'];
-           $email=$row['email'];
-           $whname=$row['whname'];
-           $password=$row['password'];
-           $capacity=(int)$row['Cpac'];
-         }
-        ?>
-
-           <img class="Img" src="../../images/icons/account1.png">
-           <h1 class="Name"> <?php echo $fname .' '. $lname ?></h1>
-           <h6 class="Atype">Accout Type : administrator</h6>
+    <div class="LESSITEMS_CARD card bg-dark box_shadow">
 
 
-<form class="FORM" action="../../INC/updateAdmin.inc.php" method="post">
+<img class="Img" src="../../images/icons/account1.png">
+<h1 class="Name"> <?php echo $name ?> </h1>
+<h6 class="Atype">Accout Type : employee </h6>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">First Name</label>
-      <input name="fname" type="text" value="<?php echo $fname ?>" class="form-control box_shadow" id="inputEmail4" placeholder="">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Last Name</label>
-      <input name="lname" type="text" value="<?php echo $lname ?>" class="form-control box_shadow" id="inputPassword4" placeholder="">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Email</label>
-    <input name="email" type="email" value="<?php echo $email ?>" class="form-control box_shadow" id="inputAddress" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Password</label>
-    <input name="password" type="text" value="<?php echo $password ?>" class="form-control box_shadow" id="inputAddress2" placeholder="">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">Wherehouse name</label>
-      <input name="whname" type="text" value="<?php echo $whname ?>" class="form-control box_shadow" id="inputCity">
-    </div>
-    <div class="form-group col-md-4">
-    <label for="inputCity">Wherehouse Capacity</label>
-    <input name="cpac" type="number" value="<?php echo $capacity ?>" class="form-control box_shadow" id="inputCity">
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Edit</label>
-      <input type="submit" value="update" class="form-control box_shadow btn btn-info" id="inputZip">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
 
-      </label>
-    </div>
-  </div>
-  <a class="BTNupdate btn btn-danger box_shadow" <?php
+<form class="FORM">
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputEmail4">ID</label>
+<input <?php echo "value=".$emId?> type="email" readonly  class="form-control box_shadow" id="inputEmail4" placeholder="">
+</div>
+<div class="form-group col-md-6">
+<label for="inputPassword4">Name</label>
+<input <?php echo "value=".$name?>  type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
+</div>
+</div>
+<div class="form-group">
+<label for="inputAddress">User Name</label>
+<input <?php echo "value=".$uname?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="">
+</div>
+<div class="form-group">
+<label for="inputAddress2">Password</label>
+<input <?php echo "value=".$pass?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder="">
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputCity"></label>
+<input style="display:none" type="text" class="form-control box_shadow" id="inputCity">
+<a class="BTNupdate btn btn-danger box_shadow" href="https://www.youtube.com">Delete Accout</a>
+</div>
+<div class="form-group col-md-4">
+<label for="inputCity"></label>
+<input style="display:none" type="number" class="form-control box_shadow" id="inputCity">
+</div>
+<div class="form-group col-md-2">
+<input type="submit" value="update" class="form-control box_shadow btn btn-info" id="inputZip">
+</div>
+</div>
+<div class="form-group">
+<div class="form-check">
 
-echo 'href="../../INC/DeleteAdmin.inc.php?id='.$id.'"';
-
- ?> >Delete Accout</a>
+</label>
+</div>
+</div>
 </form>
 
-     </div>
+</div>
+      
+     
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
