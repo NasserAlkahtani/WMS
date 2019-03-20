@@ -5,6 +5,23 @@ body {
     color: white;
   }
   
+
+  
+  .SEARCH_BAR{
+    position: relative;
+    width: 88% !important;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.SEABTN{
+    position: relative;
+    width: 10%;
+    float: left;
+}
+
+
   .feather {
     width: 16px;
     height: 16px;

@@ -91,11 +91,6 @@
             </a>
           </li>
           <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="Search.php">
-            <img src="../../images/icons/search.png" class="icon">Search
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
             <a class="nav-link" href="Myaccount.php">
               <img src="../../images/icons/account.png" class="icon">My Account 
             </a>
@@ -108,13 +103,13 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Items</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-          
-          </div>
-        
-        </div>
       </div>
+
+      <form class="">
+      <input class="form-control form-control-dark w-100 SEARCH_BAR" type="text" placeholder="Search" aria-label="Search">
+      <button type="button" class="SEABTN btn btn-info">Search</button>
+     </form>
+
 
           
       <table class="table table-dark box_shadow">
@@ -150,7 +145,7 @@
      <tr>
       <th scope="row">'.$row["id"].'</th>
       <td>'.$row["name"].'</td>
-      <td>@'.$row["uname"].'</td>
+      <td>@'.$row["qty"].'</td>
       <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
       </tr>
     ' ; 

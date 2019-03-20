@@ -89,11 +89,6 @@
             </a>
           </li>
           <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="Search.php">
-            <img src="../../images/icons/search.png" class="icon">Search
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
             <a class="nav-link" href="Myaccount.php">
               <img src="../../images/icons/account.png" class="icon">My Account 
             </a>
@@ -108,10 +103,33 @@
         <h1 class="h2">Dashboard</h1>
     
       </div>
+      <div style="color:rgb(226, 182, 154);" class="WHCAPACITY_CARD card bg-dark box_shadow">
+
+Wharehouse Capacity
+
+<div style="color:rgb(226, 182, 154);" class="NUM_ITEMS">
+
+
+<?php
+
+   $id = $_SESSION['id'];
+   $res3 = mysqli_query($conn,"SELECT Cpac FROM admins WHERE id = '$id' ");
+   while($row = mysqli_fetch_assoc($res3)) {
+     echo $row['Cpac'];
+}
+
+
+
+   ?>
+</div>
+
+</div>
+
+
 
 <div style="color: rgb(8, 143, 64);" class="WHCAPACITY_CARD card bg-dark box_shadow">
 
-Wharehouse cpacity
+Wharehouse Space Used
 
 <div class="progress PROGRESS_BAR">
    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="25"  aria-valuemin="0" aria-valuemax="100"    <?php 
@@ -158,13 +176,54 @@ Wharehouse cpacity
    
 
    
-   ?>> </div>
+   ?>> <?php echo $Prec."%";  ?> </div>
 </div>
 
 
 
 
 </div>
+
+
+<div style="color:rgb(29, 229, 202);" class="WHCAPACITY_CARD card bg-dark box_shadow">
+
+Wharehouse Left Space
+
+<div style="color:rgb(29, 229, 202);" class="NUM_ITEMS">
+
+
+<?php
+
+   $id = $_SESSION['id'];
+   $Cpacity = 0 ;
+   $res3 = mysqli_query($conn,"SELECT Cpac FROM admins WHERE id = '$id' ");
+   while($row = mysqli_fetch_assoc($res3)) {
+    $Cpacity =  $row['Cpac'];
+
+  }
+
+
+   $TotalQty = 0 ;
+   $res3 = mysqli_query($conn,"SELECT * FROM Items WHERE fk_aid = '$fk_aid' ");
+   while($row = mysqli_fetch_assoc($res3)) {
+
+
+     
+     $TotalQty += (int)$row['qty'] ;
+
+   }
+
+   $CpacLeft =  (int)$Cpacity-(int)$TotalQty;
+
+
+   echo $CpacLeft; 
+
+   ?>
+</div>
+
+</div>
+
+
 
 <div style="color: rgb(68, 166, 223);"class="WHCAPACITY_CARD card bg-dark box_shadow">
 
@@ -220,6 +279,40 @@ Number of items
 </div>
 
 </div>
+
+
+
+<div style="color: rgb(140, 62, 173);"class="WHCAPACITY_CARD card bg-dark box_shadow">
+
+Total Qty of Items
+
+<div style="color: rgb(140, 62, 173);" class="NUM_ITEMS">
+
+
+<?php
+
+   $fk_aid = $_SESSION['id'];
+   $TotalQty = 0 ;
+   $res3 = mysqli_query($conn,"SELECT * FROM Items WHERE fk_aid = '$fk_aid' ");
+   while($row = mysqli_fetch_assoc($res3)) {
+
+
+     
+     $TotalQty += (int)$row['qty'] ;
+
+   }
+
+   echo $TotalQty;
+
+
+   ?>
+   
+</div>
+
+</div>
+
+
+
 
 <div class="TOPITEMS_CARD card bg-dark box_shadow">
 

@@ -89,11 +89,6 @@
             </a>
           </li>
           <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="Search.php">
-            <img src="../../images/icons/search.png" class="icon">Search
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
             <a class="nav-link" href="Myaccount.php">
               <img src="../../images/icons/account.png" class="icon">My Account 
             </a>

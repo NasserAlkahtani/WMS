@@ -75,11 +75,6 @@
           </a>
         </li>
       
-        <li class="nav-item NAV_ITEM SELECTED">
-          <a class="nav-link" href="Search.php">
-          <img src="../../images/icons/search.png" class="icon">Search
-          </a>
-        </li>
         <li class="nav-item NAV_ITEM ">
           <a class="nav-link" href="Myaccount.php">
             <img src="../../images/icons/account.png" class="icon">My Account 
@@ -96,96 +91,7 @@
         <h1 class="h2">Search</h1>
       </div>
 
-      <form class="TOPITEMS_CARD ">
-      <input class="form-control form-control-dark w-100 SEARCH_BAR" type="text" placeholder="Search" aria-label="Search">
-      <button type="button" class="SEABTN btn btn-info">Search</button>
-    </form>
-
-      <div class="TOPITEMS_CARD card bg-dark box_shadow">
-
-      Search result of " asdsa " on itmes
-
-
-<table style="margin-top:10px;font-size:15px;"class="table table-dark box_shadow">
-  <thead>
-    <tr>
-      <th scope="col">#id</th>
-      <th scope="col">Item Name</th>
-      <th scope="col">Qty</th>
-      <th scope="col">options</th>
-    </tr>
-  </thead>
-  <tbody>
-   
-  
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr> <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-   
-  </tbody>
-</table>
-
-    </div>
-
-
-    <div class="LESSITEMS_CARD card bg-dark box_shadow">
-
-Search result of " asdsa " on employees
-
-<table style="margin-top:10px;font-size:15px;"class="table table-dark box_shadow">
-  <thead>
-  <tr>
-      <th scope="col">#id</th>
-      <th scope="col">Name</th>
-      <th scope="col">User Name</th>
-      <th scope="col">options</th>
-    </tr>
-  </thead>
-  <tbody>
-   
-  
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-
-   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-
-    
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-
-   
-  </tbody>
-</table>
-
-    </div>
+     
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -167,3 +167,18 @@ color: red !important;
     margin-right: 10px;
   }
 
+  .SEARCH_BAR{
+    position: relative;
+    width: 88% !important;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.SEABTN{
+    position: relative;
+    width: 10%;
+    float: left;
+}
+
+
