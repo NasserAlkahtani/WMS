@@ -7,7 +7,7 @@ session_start();
 
 
 // The admin id to seed info to his account 
-$AdminId  =  3 ;
+$AdminId  =  1 ;
 // The number of employees of the admin 
 $NumOfEmp = 30 ;
 // The number of Items of the admin wh  and qty of each item  

@@ -55,24 +55,30 @@
 
 
 	<div class="limiter">
+	<?php 
+
+																											session_start();
+																											if(isset($_SESSION['Msg'])){
+																											if($_SESSION['Msg'] != "" ){
+
+																											echo $_SESSION['Msg'] ; 
+
+																											$_SESSION["Msg"] = "";
+
+																											}
+																											}
+
+
+
+																											?>
+
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
 																									<form class="login100-form validate-form flex-sb flex-w" action="../INC/Signup.inc.php" method="post">
 																										<span class="login100-form-title p-b-51">
 																											Signup
 																										</span>
-																										          <?php
-																													
-																													session_start();
-
-																													if(isset($_SESSION["erorr"])){
-																														echo "<h6 class='erorr'> ".$_SESSION['erorr']."</h6>";
-																														unset($_SESSION['erorr']);
-
-																													}
-
-																													?>
-
+																										
 																							
 																							<div class="wrap-input100 validate-input m-b-16" data-validate = "First Name is required">
 																											<input class="input100" type="text" name="Fname" placeholder="First Name">
@@ -104,7 +110,7 @@
 																										</div>
 
 																										<div class="wrap-input100 validate-input m-b-16" data-validate = "wharehouse name is required">
-																											<input class="input100" type="password" name="whname" placeholder="wharehouse name">
+																											<input class="input100" type="text" name="whname" placeholder="wharehouse name">
 																											<span class="focus-input100"></span>
 																										</div>
 

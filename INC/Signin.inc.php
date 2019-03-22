@@ -28,7 +28,7 @@ if (mysqli_num_rows($res) == 1 ) {
     $_SESSION["capacity"] = (int)$row['Cpac'];
 
 
-    unset($_SESSION['erorr']);
+    unset( $_SESSION["Msg"]);
 
     }
 
@@ -50,7 +50,7 @@ if (mysqli_num_rows($res) == 1 ) {
         $_SESSION['name'] = $row['name'];
         $_SESSION['uname'] = $row['uname'];
     
-        unset($_SESSION['erorr']);
+        unset( $_SESSION["Msg"]);
     
         }
     
@@ -58,7 +58,14 @@ if (mysqli_num_rows($res) == 1 ) {
         header('location: ../PAGES/Employee/Home.php');
 }else{
 
-    $_SESSION['erorr'] = "worng user name or password" ;
+    $_SESSION["Msg"] = "
+
+    <div class='alert alert-danger' role='alert'>
+     wrong user name or password
+    </div>
+    
+    " ;
+    
     header('location: ../PAGES/Signin.php');
 
 }

@@ -42,33 +42,55 @@ if($Pass1 == $Pass2){
                                                 $_SESSION['lname'] = $row["lname"];
                                                 $_SESSION['email'] = $row["email"]; 
                                                 $_SESSION["whname"]   = $row['whname'];
-                                                $_SESSION["capacity"] = $row['cpacity'];
-                                                unset($_SESSION['erorr']);
+                                                $_SESSION["capacity"] = $row['Cpac'];
+                                                unset($_SESSION["Msg"] );
                                             }
 
                                        
                             
-                                        unset($_SESSION['erorr']);
+                                        unset($_SESSION["Msg"] );
                                         header('location: ../PAGES/Admin/Home.php');
 
 
                                     }else{
-                                        $_SESSION['erorr'] = "Something went worng try agian Error code(SP1)" ;
-                                        header('location: ../PAGES/Signup.php');
+                                        $_SESSION["Msg"] = "
+
+                                        <div class='alert alert-danger' role='alert'>
+                                         something went wrong error code SP1
+                                        </div>
+                                        
+                                        " ;                                        header('location: ../PAGES/Signup.php');
                                     }
                                 }else{
-                                    $_SESSION['erorr'] = "Something went worng try agian Error code(SP2)" ;
-                                    header('location: ../PAGES/Signup.php');
+                                    $_SESSION["Msg"] = "
+
+                                    <div class='alert alert-danger' role='alert'>
+                                     something went wrong error code SP2
+                                    </div>
+                                    
+                                    " ;                                    header('location: ../PAGES/Signup.php');
                                 }
                 }
 
     }else{
-        $_SESSION['erorr'] = "Something went worng try agian Error code(SP3)" ;
-        header('location: ../PAGES/Signup.php');
+        $_SESSION["Msg"] = "
+
+        <div class='alert alert-danger' role='alert'>
+         something went wrong error code SP3
+        </div>
+        
+        " ;
+                header('location: ../PAGES/Signup.php');
     }
 
 }else{
-    $_SESSION['erorr'] = "Passwords did not match" ;
+    $_SESSION["Msg"] = "
+
+    <div class='alert alert-danger' role='alert'>
+     password did not match
+    </div>
+    
+    " ;
     header('location: ../PAGES/Signup.php');
 
 }

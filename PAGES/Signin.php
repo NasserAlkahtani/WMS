@@ -55,6 +55,23 @@
 		</div>
 	</nav>
 
+	<?php 
+
+session_start();
+if(isset($_SESSION['Msg'])){
+if($_SESSION['Msg'] != "" ){
+
+echo $_SESSION['Msg'] ; 
+
+$_SESSION["Msg"] = "";
+
+}
+}
+
+
+
+?>
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
@@ -64,21 +81,6 @@
 						Sign in
 					</span>
  
-          <?php
-          
-          session_start();
-
-          if(isset($_SESSION["erorr"])){
-			  if($_SESSION["erorr"]== "worng user name or password")
-			  {
-			echo "<h6 class='erorr'> ".$_SESSION['erorr']."</h6>";
-			unset($_SESSION['erorr']);
-
-			  }
-		  
-		  }
-
-          ?>
 
 					<div class="wrap-input100  m-b-16" data-validate = "Username is required" >
 						<input name="email" class="input100" type="text" placeholder="Username">
