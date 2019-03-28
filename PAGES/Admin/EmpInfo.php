@@ -211,6 +211,101 @@ echo 'href="../../INC/DeleteEmp.inc.php?id='.$emId.'"';
 </div>
       
      
+<div style="color:#FFC300"class="LESSITEMS_CARD card bg-dark box_shadow">
+
+Employee Transactions list
+
+
+<table style="margin-top:10px;font-size:15px;color:#FFC300"class="table table-dark box_shadow">
+  <thead>
+  <tr>
+      <th scope="col">Item Id</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Transaction Type</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+  <?php 
+     
+     $fk_aid = $_SESSION['id'];
+  
+  
+     $res = mysqli_query($conn,"SELECT * FROM trans WHERE fk_eid = '$emId' ORDER BY time DESC");
+  
+     
+     if(mysqli_num_rows($res) > 0 ){
+      
+
+      while($row = mysqli_fetch_assoc($res)) {
+    
+        $iid = $row["fk_iid"];
+        $res5 = mysqli_query($conn,"SELECT name FROM items WHERE id = '$iid'");
+
+
+        while($row5 = mysqli_fetch_assoc($res5)) {
+
+          $Type = "Undefined";
+          if($row["type"] == "I"){
+            $Type = "INCREASE" ;
+          }else if($row["type"] == "D"){
+            $Type = "DECREASE" ;
+
+          }
+      echo   '
+      
+       <tr>
+        <th scope="row">'.$row["fk_iid"].'</th>
+        <td>'.$row5["name"].'</td>
+        <td>'.$Type.'</td>
+        <td>'.$row["qty"].'</td>
+        <td>'.$row["time"].'</td>
+
+
+        </tr>
+      ' ; 
+  
+
+  
+      }
+
+    }   
+  
+  }
+
+       
+       ?>
+      
+      
+  </tbody>
+
+
+
+</table>
+
+<?php
+  
+  if(mysqli_num_rows($res) <= 0){
+
+    echo "<h1 style='position: relative;
+    width: 100%;
+    margin-top:50px;
+    margin-bottom:50px;
+    top: 100%;
+    font-size: 30px;
+    color:white;
+    text-align: center; '>This employee has no transactions </h1>";
+  
+  }
+
+  ?>
+
+
+    </div>
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

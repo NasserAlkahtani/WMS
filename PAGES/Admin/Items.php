@@ -146,7 +146,7 @@
       <th scope="row">'.$row["id"].'</th>
       <td>'.$row["name"].'</td>
       <td>@'.$row["qty"].'</td>
-      <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+      <td><a href="#YOULINK#?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
       </tr>
     ' ; 
 

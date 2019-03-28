@@ -10,7 +10,7 @@ $res = mysqli_query($conn,"DELETE FROM admins WHERE id = '$id' ");
 if($res){
 $_SESSION["Msg"] = "
 
-<div class='alert alert-success' role='alert'>
+<div class='alert alert-success box_shadow' role='alert'>
 
 your account has been deleted successfully
 
@@ -24,7 +24,7 @@ header('location: Signout.inc.php');
 
     $_SESSION["Msg"] = "
 
-<div class='alert alert-danger s' role='alert'>
+<div class='alert alert-danger s box_shadow' role='alert'>
 
 Something went wrong !
 

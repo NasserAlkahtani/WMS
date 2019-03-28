@@ -2,9 +2,16 @@
 
     session_start(); 
 
-    session_destroy() ;
+    $Msg = $_SESSION["Msg"];
 
+
+    session_destroy() ;
     
+    session_start(); 
+    
+    $_SESSION["Msg"] = $Msg ;
+
+
     header('location: ../PAGES/Signin.php');
 
 

@@ -63,8 +63,7 @@ if($_SESSION['Msg'] != "" ){
 
 echo $_SESSION['Msg'] ; 
 
-$_SESSION["Msg"] = "";
-
+unset($_SESSION['Msg']);
 }
 }
 

@@ -1,6 +1,7 @@
 
 <!doctype html>
 <?php
+     include_once('../../INC/db.inc.php');
      session_start();
      
      if(!isset($_SESSION['id'])){
@@ -240,31 +241,46 @@ Last 3 Created Employees
   </thead>
   <tbody>
    
+  <?php 
+     
+     $fk_aid = $_SESSION['id'];
   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+  
+     $res = mysqli_query($conn,"SELECT * FROM employees WHERE fk_aid = '$fk_aid' ORDER BY id DESC");
+  
+     
+     if(mysqli_num_rows($res) > 0 ){
+      
+     $counter = 0 ;
 
-   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
 
-    
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+      while($row = mysqli_fetch_assoc($res)) {
+        
+        if($counter == 3 ){
+          break;
+        }
 
-   
+      echo   '
+      
+       <tr>
+        <th scope="row">'.$row["id"].'</th>
+        <td>'.$row["name"].'</td>
+        <td>'.$row["uname"].'</td>
+        <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+        </tr>
+      ' ; 
+  
+
+      $counter = $counter + 1;    
+  
+      }
+
+    }   
+       
+       
+       ?>
+      
+      
   </tbody>
 </table>
 

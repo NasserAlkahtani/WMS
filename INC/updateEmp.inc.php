@@ -12,8 +12,30 @@ $fk_id =  $_SESSION['id'] ;
 $id = $_POST['id'];
 
 
+
+
+$cRes = mysqli_query($conn,"SELECT * FROM  `employees` WHERE `uname`='$uname' ");
+
+
+if(mysqli_num_rows($cRes) > 0 ){
+
+    $_SESSION["Msg"] = "
+
+    <div class='alert alert-danger s' role='alert'>
+    
+    Employee with user name ( ".$uname." ) Already exist  
+    
+    </div>
+    
+    " ;
+    
+    header("location: ../PAGES/Admin/EmpInfo.php?id=".$id." ");
+
+
+}else{
+
 $res = mysqli_query($conn,"UPDATE `employees` SET `name`='$name',`uname`='$uname', `password`='$pass'
-                           WHERE fk_aid = '$fk_aid' ");
+                           WHERE fk_aid = '$fk_aid' AND id = '$id' ");
 
 
 
@@ -53,4 +75,7 @@ header("location: ../PAGES/Admin/EmpInfo.php?id=".$id." ");
 
 
 mysqli_close($conn);
+}
+
+
 ?>
