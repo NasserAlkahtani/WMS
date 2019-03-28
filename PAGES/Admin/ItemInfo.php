@@ -68,7 +68,7 @@
               <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
             </a>
           </li>
-          <li class="nav-item NAV_ITEM SELECTED">
+          <li class="nav-item NAV_ITEM">
             <a class="nav-link" href="Employees.php">
             <img src="../../images/icons/group.png" class="icon">Employees
             </a>
@@ -78,7 +78,7 @@
             <img src="../../images/icons/new-user.png" class="icon">Create Employee
             </a>
           </li>
-          <li class="nav-item NAV_ITEM">
+          <li class="nav-item NAV_ITEM SELECTED">
             <a class="nav-link" href="Items.php">
             <img src="../../images/icons/items.png" class="icon">Items
             </a>
@@ -97,26 +97,46 @@
 
 
     </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Item information
+        
+        </h1>
+      </div>
 
-   <?php 
+      <?php 
+     
+
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+      
+
+     
+     ?>
    
    
+   <?php
    
-   
-   
-   
-   $emId = $_GET['id'];
+   $ItemId = $_GET['id'];
    $name = ""; 
    $uname = "" ; 
    $pass = "" ; 
 
-   $res = mysqli_query($conn,"SELECT * FROM employees  WHERE id = '$emId' ");
+   $res = mysqli_query($conn,"SELECT * FROM items  WHERE id = '$ItemId'  ");
 
    while($row = mysqli_fetch_assoc($res)) {
     
     $name = $row['name']; 
-    $uname =  $row['uname'];
-    $pass = $row['password'];
+    $loc =  $row['location'];
+    $qty = (int)$row['qty'];
+    $desc = $row['Dsc'];
 
   }
 
@@ -128,47 +148,62 @@
    ?>
 
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="LESSITEMS_CARD card bg-dark box_shadow">
 
 
-<img class="Img" src="../../images/icons/account1.png">
 <h1 class="Name"> <?php echo $name ?> </h1>
-<h6 class="Atype">Accout Type : employee </h6>
 
 
-<form class="FORM">
+<form action="../../INC/updateEmp.inc.php" method="post" class="FORM">
 <div class="form-row">
 <div class="form-group col-md-6">
 <label for="inputEmail4">ID</label>
-<input <?php echo "value=".$emId?> type="email" readonly  class="form-control box_shadow" id="inputEmail4" placeholder="">
+<input  <?php echo "value=".$ItemId?> type="email" readonly  class="form-control box_shadow" id="inputEmail4" placeholder="" name="id">
 </div>
+
 <div class="form-group col-md-6">
 <label for="inputPassword4">Name</label>
-<input <?php echo "value=".$name?>  type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
+<input <?php echo "value=".$name?>  type="text" class="form-control box_shadow" id="inputPassword4" placeholder=""  name="name">
 </div>
+
 </div>
+
 <div class="form-group">
-<label for="inputAddress">User Name</label>
-<input <?php echo "value=".$uname?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="">
+<label for="inputAddress">location</label>
+<input <?php echo "value=".$loc?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="" name = "Location" >
 </div>
+
 <div class="form-group">
-<label for="inputAddress2">Password</label>
-<input <?php echo "value=".$pass?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder="">
+<label for="inputAddress2">Qty</label>
+<input <?php echo "value=".$qty?> type="number" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Qty" >
 </div>
+
+<div class="form-group">
+<label for="inputAddress2">Description</label>
+<input <?php echo "value=".$desc?> style="height:150px;" type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Qty" >
+</div>
+
+
 <div class="form-row">
 <div class="form-group col-md-6">
 <label for="inputCity"></label>
 <input style="display:none" type="text" class="form-control box_shadow" id="inputCity">
-<a class="BTNupdate btn btn-danger box_shadow" href="https://www.youtube.com">Delete Accout</a>
-</div>
+<a class="BTNupdate btn btn-danger box_shadow"<?php
+echo 'href="../../INC/DeleteEmp.inc.php?id='.$ItemId.'"';
+
+ ?>
+>Delete Item</a></div>
+
 <div class="form-group col-md-4">
 <label for="inputCity"></label>
 <input style="display:none" type="number" class="form-control box_shadow" id="inputCity">
 </div>
+
+
 <div class="form-group col-md-2">
 <input type="submit" value="update" class="form-control box_shadow btn btn-info" id="inputZip">
 </div>
+
 </div>
 <div class="form-group">
 <div class="form-check">

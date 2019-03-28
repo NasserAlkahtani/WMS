@@ -4,10 +4,11 @@ include_once('db.inc.php');
 session_start() ; 
 
 $q = $_POST['q']; 
+$fk_aid = $_SESSION["id"];
 $output = " ";
 
 
-$res1 = mysqli_query($conn,"SELECT * FROM employees WHERE uname LIKE '%$q%' OR name LIKE '%$q%' OR id = '$q' ");
+$res1 = mysqli_query($conn,"SELECT * FROM employees WHERE fk_aid = '$fk_aid' AND uname LIKE '%$q%' OR name LIKE '%$q%' OR id LIKE '%$q%' ");
 
 
 if(mysqli_num_rows($res1) > 0){
@@ -36,7 +37,6 @@ if(mysqli_num_rows($res1) > 0){
 }else if($q == ""){
 
 
-    $fk_aid = $_SESSION['id'];
 
 
    $res = mysqli_query($conn,"SELECT * FROM employees  WHERE fk_aid = '$fk_aid' ");
@@ -68,7 +68,7 @@ if(mysqli_num_rows($res1) > 0){
 
 }else{
 
-    $output = "<h5> Employee not found </h5>";
+    $output = "<h5 style='postion:relative;width:100%;margin:30px;font-size:50px;text-align:center;'> Employee not found </h5>";
     echo $output;
 }
 
