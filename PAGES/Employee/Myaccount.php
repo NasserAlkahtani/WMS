@@ -1,8 +1,8 @@
 
 <!doctype html>
 <?php
-     session_start();
-     
+      session_start();
+      include_once('../../INC/db.inc.php');
      if(!isset($_SESSION['id'])){
       header('location: Signin.php');
      }
@@ -50,7 +50,6 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.php"><?php   echo "@".$_SESSION['uname']; ?></a>
 
-<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 <ul class="navbar-nav px-3">
   <li class="nav-item text-nowrap">
     <a class="nav-link Signout" href="../../INC/Signout.inc.php">Sign out</a>
@@ -64,8 +63,8 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item NAV_ITEM">
-          <a style="color:white;"class="nav-link" href="Home.php">
-            <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
+          <a style="color:white;"class="nav-link" href="Trans.php">
+            <img src="../../images/icons/dashboard.png" class="icon">My transactions  
           </a>
         </li>
       
@@ -91,30 +90,81 @@
         <h1 class="h2">My Account</h1>
       </div>
 
+      <?php 
+     
+
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+         
+     ?>
+
+
+
+<?php
+
+
+$eid  =  $_SESSION["eid"] ;
+
+
+
+$name = "";
+$uname  = "" ;
+$pass = "";
+
+$res = mysqli_query($conn,"SELECT * FROM  `employees` WHERE `id`='$eid' ");
+
+
+if(mysqli_num_rows($res) > 0 ){
+
+
+
+    while($row = mysqli_fetch_assoc($res)) {
+      $name = $row["name"];
+      $uname  = $row["uname"] ;
+      $pass = $row["password"];
+      
+
+    }
+
+  }
+?>
+
+
       <div class="LESSITEMS_CARD card bg-dark box_shadow">
 
 
            <img class="Img" src="../../images/icons/account1.png">
-           <h1 class="Name"> Nasser Alkahtani </h1>
+           <h1 class="Name"><?php 
+           
+          echo  $name;
+           
+           ?></h1>
            <h6 class="Atype">Accout Type : Employee</h6>
 
 
-           <form class="FORM">
+           <form class="FORM" action="../../INC/updateMyAcEmp.inc.php" method="post">
  
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputPassword4">My Name</label>
-      <input type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
+      <input name="name" <?php     echo  "value=".$name ?> type="text" class="form-control box_shadow" id="inputPassword4" placeholder="">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">User name</label>
-      <input type="text" class="form-control box_shadow" id="inputCity">
+      <input name="uname" type="text"  <?php     echo  "value=".$uname ?> class="form-control box_shadow" id="inputCity">
     </div>
     <div class="form-group col-md-4">
     <label for="inputCity">Password</label>
-    <input type="number" class="form-control box_shadow" id="inputCity">
+    <input name="pass" type="text"  <?php     echo  "value=".$pass ?>  class="form-control box_shadow" id="inputCity">
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Edit</label>

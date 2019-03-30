@@ -44,18 +44,19 @@ if (mysqli_num_rows($res) == 1 ) {
         while($row = mysqli_fetch_assoc($res1)) {
          
         
-        $_SESSION['id'] = $row["id"]; 
+        $_SESSION['eid'] = $row["id"]; 
         $_SESSION['Type'] = "Employee" ; 
-        $_SESSION['fk_aid'] = $row["fk_aid"];
+        $_SESSION['id'] = $row["fk_aid"];
         $_SESSION['name'] = $row['name'];
         $_SESSION['uname'] = $row['uname'];
+        $_SESSION['epass'] = $row['password'];
     
         unset( $_SESSION["Msg"]);
     
         }
     
         mysqli_close($conn);
-        header('location: ../PAGES/Employee/Home.php');
+        header('location: ../PAGES/Employee/Items.php');
 }else{
 
     $_SESSION["Msg"] = "

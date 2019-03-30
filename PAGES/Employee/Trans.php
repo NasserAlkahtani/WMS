@@ -4,7 +4,7 @@
      session_start();
      include_once('../../INC/db.inc.php');
 
-     if(!isset($_SESSION['id'])){
+     if(!isset($_SESSION['eid'])){
       header('location: Signin.php');
      }
   ?>
@@ -44,56 +44,45 @@
   <body>
 
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.php"><?php   echo $_SESSION['whname']; ?></a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.php"><?php   echo "@".$_SESSION['uname']; ?></a>
 
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link Signout" href="../../INC/Signout.inc.php">Sign out</a>
-    </li>
-  </ul>
+<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+<ul class="navbar-nav px-3">
+  <li class="nav-item text-nowrap">
+    <a class="nav-link Signout" href="../../INC/Signout.inc.php">Sign out</a>
+  </li>
+</ul>
 </nav>
 
 <div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item NAV_ITEM">
-            <a style="color:white;" class="nav-link" href="Home.php">
-              <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="Employees.php">
-            <img src="../../images/icons/group.png" class="icon">Employees
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="CreateEmployee.php">
-            <img src="../../images/icons/new-user.png" class="icon">Create Employee
-            </a>
-          </li>
+<div class="row">
+  <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+      <li class="nav-item NAV_ITEM SELECTED">
+          <a style="color:white;"class="nav-link" href="Trans.php">
+            <img src="../../images/icons/dashboard.png" class="icon">My transactions  
+          </a>
+        </li>
+      
+      
+        <li class="nav-item NAV_ITEM">
+          <a class="nav-link" href="Items.php">
+          <img src="../../images/icons/items.png" class="icon">Items
+          </a>
+        </li>
+      
     
-          <li class="nav-item NAV_ITEM SELECTED">
-            <a class="nav-link" href="Items.php">
-            <img src="../../images/icons/items.png" class="icon">Items
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="CreateItem.php">
-            <img src="../../images/icons/plus.png" class="icon">Create Item
-            </a>
-          </li>
-          <li class="nav-item NAV_ITEM">
-            <a class="nav-link" href="Myaccount.php">
-              <img src="../../images/icons/account.png" class="icon">My Account 
-            </a>
-          </li>
-        </ul>
+        <li class="nav-item NAV_ITEM">
+          <a class="nav-link" href="Myaccount.php">
+            <img src="../../images/icons/account.png" class="icon">My Account 
+          </a>
+        </li>
+      </ul>
+
 
 
     </nav>
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Items</h1>
@@ -124,71 +113,90 @@
 
 
           
-      <table class="table table-dark box_shadow">
+     <table style="margin-top:10px;font-size:15px;color:#FFC300"class="table table-dark box_shadow">
   <thead>
-    <tr>
-      <th scope="col">#id</th>
+  <tr>
+      <th scope="col">Item Id</th>
       <th scope="col">Item Name</th>
+      <th scope="col">Transaction Type</th>
       <th scope="col">Qty</th>
-      <th scope="col">options</th>
+      <th scope="col">Time</th>
     </tr>
   </thead>
   <tbody id="RES-BODY">
    
-  
   <?php 
      
      $fk_aid = $_SESSION['id'];
+     $emId = $_SESSION["eid"];
   
+     $res = mysqli_query($conn,"SELECT * FROM trans WHERE fk_eid = '$emId' ORDER BY time DESC");
   
-     $res = mysqli_query($conn,"SELECT * FROM items  WHERE fk_aid = '$fk_aid' ");
-  
-
      
+     if(mysqli_num_rows($res) > 0 ){
+      
 
-
-   if(mysqli_num_rows($res) > 0 ){
+      while($row = mysqli_fetch_assoc($res)) {
     
-    while($row = mysqli_fetch_assoc($res)) {
+      
+
+          $Type = "Undefined";
+          if($row["type"] == "I"){
+            $Type = "INCREASE" ;
+          }else if($row["type"] == "D"){
+            $Type = "DECREASE" ;
+
+          }
+      echo   '
+      
+       <tr>
+        <th scope="row">'.$row["fk_iid"].'</th>
+        <td>'.$row["iname"].'</td>
+        <td>'.$Type.'</td>
+        <td>'.$row["qty"].'</td>
+        <td>'.$row["time"].'</td>
+
+
+        </tr>
+      ' ; 
+  
+
+  
+      }
+
+    }   
+  
+  
+
+       
+       ?>
       
       
-    echo   '
-    
-     <tr>
-      <th scope="row">'.$row["id"].'</th>
-      <td>'.$row["name"].'</td>
-      <td>'.$row["qty"].'</td>
-      <td><a href="ItemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
-      </tr>
-    ' ; 
-
-  
-
-    }
-  }   
-     
-     
-     ?>
-    
   </tbody>
+
+
+
 </table>
 
-
 <?php
+  
+  if(mysqli_num_rows($res) <= 0){
+
+    echo "<h1 style='position: relative;
+    width: 100%;
+    margin-top:50px;
+    margin-bottom:50px;
+    top: 100%;
+    font-size: 30px;
+    color:white;
+    text-align: center; '>You have no transactions </h1>";
+  
+  }
+
+  ?>
 
 
-if(mysqli_num_rows($res) == 0 ){
 
-  echo "<h1 style='position: relative;
-  width: 100%;
-  top: 100%;
-  font-size: 50px;
-  text-align: center; '>You have no Items !</h1>";
-}
-
-
-
-?>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -205,7 +213,7 @@ $( document ).ready(function() {
     
 
       $.ajax({
-          url : "../../INC/SearchItem.inc.php",
+          url : "../../INC/SearchTrans.inc.php",
           method: "POST" ,
           data:{q:txt},
           success:function(data){

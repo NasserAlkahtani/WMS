@@ -50,7 +50,6 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.php"><?php   echo $_SESSION['whname']; ?></a>
 
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link Signout" href="../../INC/Signout.inc.php">Sign out</a>
@@ -241,12 +240,7 @@ Employee Transactions list
 
       while($row = mysqli_fetch_assoc($res)) {
     
-        $iid = $row["fk_iid"];
-        $res5 = mysqli_query($conn,"SELECT name FROM items WHERE id = '$iid'");
-
-
-        while($row5 = mysqli_fetch_assoc($res5)) {
-
+    
           $Type = "Undefined";
           if($row["type"] == "I"){
             $Type = "INCREASE" ;
@@ -258,7 +252,7 @@ Employee Transactions list
       
        <tr>
         <th scope="row">'.$row["fk_iid"].'</th>
-        <td>'.$row5["name"].'</td>
+        <td>'.$row["iname"].'</td>
         <td>'.$Type.'</td>
         <td>'.$row["qty"].'</td>
         <td>'.$row["time"].'</td>
@@ -273,7 +267,7 @@ Employee Transactions list
 
     }   
   
-  }
+  
 
        
        ?>

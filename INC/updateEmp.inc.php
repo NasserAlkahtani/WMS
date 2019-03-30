@@ -2,13 +2,12 @@
 include_once('db.inc.php');
 
 session_start() ;
-$fk_aid = $_SESSION['id'];
 
 
-$pass = $_POST['pass'];
-$name = $_POST['name'];
+$pass =  $_POST['pass'];
+$name =  $_POST['name'];
 $uname = $_POST['uname'];
-$fk_id =  $_SESSION['id'] ;
+$fk_id = $_SESSION['id'] ;
 $id = $_POST['id'];
 
 

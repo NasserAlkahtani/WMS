@@ -4,6 +4,7 @@ include_once('db.inc.php');
 session_start() ; 
 
 $q = $_POST['q']; 
+
 $fk_aid = $_SESSION['id'];
 
 $output = " ";
@@ -24,7 +25,7 @@ if(mysqli_num_rows($res1) > 0){
      <tr>
      <th scope="row">'.$row["id"].'</th>
      <td>'.$row["name"].'</td>
-     <td>@'.$row["qty"].'</td>
+     <td>'.$row["qty"].'</td>
      <td><a href="ItemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
      </tr>
         ' ; 
@@ -34,6 +35,8 @@ if(mysqli_num_rows($res1) > 0){
         }
 
         echo $output;
+
+
 
 }else if($q == ""){
 

@@ -2,7 +2,7 @@
 <!doctype html>
 <?php
      session_start();
-     
+     include_once('../../INC/db.inc.php');
      if(!isset($_SESSION['id'])){
       header('location: Signin.php');
      }
@@ -41,12 +41,13 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="../../STYLES/Search.css" rel="stylesheet">
+    <link href="../../STYLES/Myaccount.css" rel="stylesheet">
     <link href="../../STYLES/GLOBAL.css" rel="stylesheet">
+
   </head>
   <body>
 
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.php"><?php   echo "@".$_SESSION['uname']; ?></a>
 
 <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
@@ -62,20 +63,21 @@
   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
-        <li class="nav-item NAV_ITEM ">
-          <a style="color:white;"class="nav-link" href="Home.php">
-            <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
+      <li class="nav-item NAV_ITEM">
+          <a style="color:white;"class="nav-link" href="Trans.php">
+            <img src="../../images/icons/dashboard.png" class="icon">My transactions  
           </a>
         </li>
       
       
-        <li class="nav-item NAV_ITEM">
+        <li class="nav-item NAV_ITEM SELECTED">
           <a class="nav-link" href="Items.php">
           <img src="../../images/icons/items.png" class="icon">Items
           </a>
         </li>
       
-        <li class="nav-item NAV_ITEM ">
+    
+        <li class="nav-item NAV_ITEM">
           <a class="nav-link" href="Myaccount.php">
             <img src="../../images/icons/account.png" class="icon">My Account 
           </a>
@@ -85,13 +87,140 @@
 
 
     </nav>
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Search</h1>
+        <h1 class="h2">Items information</h1>
       </div>
 
+      <?php 
      
+
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+      
+
+     
+     ?>
+
+
+
+   
+   
+   <?php
+   
+   $ItemId = $_GET['id'];
+   $name = ""; 
+   $uname = "" ; 
+   
+   $res = mysqli_query($conn,"SELECT * FROM items  WHERE id = '$ItemId'  ");
+
+   while($row = mysqli_fetch_assoc($res)) {
+    
+    $name = $row['name']; 
+    $loc =  $row['location'];
+    $qty = (int)$row['qty'];
+
+  }
+
+   
+
+
+   
+
+  
+  $res2 = mysqli_query($conn,"SELECT Dsc FROM items  WHERE id = '$ItemId'  ");
+
+  while($row = mysqli_fetch_assoc($res2)) {
+   
+  
+    $desc = (String)$row['Dsc'];
+
+ }
+
+   
+   ?>
+
+
+    <div class="LESSITEMS_CARD card bg-dark box_shadow">
+
+
+<h1 class="Name"> <?php echo $name ?> </h1>
+
+
+<form action="../../INC/updateItemEmp.inc.php" method="post" class="FORM" style="margin-top:50px;">
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputEmail4">ID :</label>
+<input style="background-color:rgb(255,255,255,0);color:white;border:none;" <?php echo "value=".$ItemId?> type="email" readonly  class="form-control" id="inputEmail4" placeholder="" name="id">
+</div>
+
+<div class="form-group col-md-6">
+<label for="inputPassword4">Name</label>
+<input style="background-color:rgb(255,255,255,0);color:white;border:none;" <?php echo "value=".$name?>  type="text" readonly class="form-control " id="inputPassword4" placeholder=""  name="name">
+</div>
+
+</div>
+
+<div class="form-group">
+<label for="inputAddress">location</label>
+<input style="background-color:rgb(255,255,255,0);color:white;border:none;" <?php echo "value=".$loc?> type="text" readonly class="form-control " id="inputAddress" placeholder=""  name="Location" >
+</div>
+
+<div class="form-group">
+<label for="inputAddress2">Qty</label>
+<input <?php echo "value=".$qty?> type="number" class="form-control box_shadow" id="inputAddress2" placeholder=""   name="Qty" >
+</div>
+
+<div class="form-group">
+<label for="inputAddress2">Description</label>
+<input readonly style="background-color:rgb(255,255,255,0);color:white;border:none;" value="<?php echo $desc ?>" style="height:150px;" type="text" class="form-control " id="inputAddress2" placeholder=""  name="Desc" >
+</div>
+
+
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="inputCity"></label>
+<input style="display:none" type="text" class="form-control box_shadow" id="inputCity">
+<a style="display:none" class="BTNupdate btn btn-danger box_shadow"<?php
+echo 'href="../../INC/DeleteItem.inc.php?id='.$ItemId.'"';
+
+ ?>
+
+ 
+>Delete Item</a></div>
+
+<div class="form-group col-md-4">
+<label for="inputCity"></label>
+<input style="display:none" type="number" class="form-control box_shadow" id="inputCity">
+</div>
+
+
+<div class="form-group col-md-2">
+<input type="submit" value="save changes" class="form-control box_shadow btn btn-success" id="inputZip">
+</div>
+
+</div>
+<div class="form-group">
+<div class="form-check">
+
+</label>
+</div>
+</div>
+</form>
+
+</div>
+      
+     
+
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

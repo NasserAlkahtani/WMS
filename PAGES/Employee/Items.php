@@ -2,8 +2,9 @@
 <!doctype html>
 <?php
      session_start();
-     
-     if(!isset($_SESSION['id'])){
+     include_once('../../INC/db.inc.php');
+
+     if(!isset($_SESSION['eid'])){
       header('location: Signin.php');
      }
   ?>
@@ -20,13 +21,8 @@
     <title>WMS</title>
 
 
-    <!-- Bootstrap core CSS -->
-<link href="/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link href="/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <style>
       .bd-placeholder-img {
@@ -63,9 +59,9 @@
   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
-        <li class="nav-item NAV_ITEM">
-          <a style="color:white;"class="nav-link" href="Home.php">
-            <img src="../../images/icons/dashboard.png" class="icon">Dashboard 
+      <li class="nav-item NAV_ITEM">
+          <a style="color:white;"class="nav-link" href="Trans.php">
+            <img src="../../images/icons/dashboard.png" class="icon">My transactions  
           </a>
         </li>
       
@@ -87,21 +83,34 @@
 
 
     </nav>
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Items</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
-        </div>
       </div>
+
+      <?php 
+     
+
+     if(isset($_SESSION['Msg'])){
+      if($_SESSION['Msg'] != "" ){
+ 
+       echo $_SESSION['Msg'] ; 
+ 
+       $_SESSION["Msg"] = "";
+ 
+      }
+     }
+      
+
+     
+     ?>
+
+
+      <form class="">
+      <input id="SEA-INPUT"class="form-control form-control-dark w-100 SEARCH_BAR" type="text" placeholder="Search" aria-label="Search">
+      <button type="button" class="SEABTN btn btn-info">Search</button>
+     </form>
+
 
           
       <table class="table table-dark box_shadow">
@@ -113,60 +122,95 @@
       <th scope="col">options</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="RES-BODY">
    
   
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+  <?php 
+     
+     $fk_aid = $_SESSION['id'];
+  
+  
+     $res = mysqli_query($conn,"SELECT * FROM items  WHERE fk_aid = '$fk_aid' ");
+  
 
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="Home.php"><button type="button" class="btn btn-info">More</button></a> </td>
-    </tr>
+     
+
+
+   if(mysqli_num_rows($res) > 0 ){
+    
+    while($row = mysqli_fetch_assoc($res)) {
+      
+      
+    echo   '
+    
+     <tr>
+      <th scope="row">'.$row["id"].'</th>
+      <td>'.$row["name"].'</td>
+      <td>'.$row["qty"].'</td>
+      <td><a href="ItemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+      </tr>
+    ' ; 
+
+  
+
+    }
+  }   
+     
+     
+     ?>
+    
   </tbody>
 </table>
 
 
+<?php
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-        <script src="dashboard.js"></script></body>
+
+if(mysqli_num_rows($res) == 0 ){
+
+  echo "<h1 style='position: relative;
+  width: 100%;
+  top: 100%;
+  font-size: 50px;
+  text-align: center; '>You have no Items !</h1>";
+}
+
+
+
+?>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+$( document ).ready(function() {
+
+
+  $("#SEA-INPUT").keyup(function(){
+
+    var txt = $(this).val();
+
+    
+    
+
+      $.ajax({
+          url : "../../INC/SearchItem.inc.php",
+          method: "POST" ,
+          data:{q:txt},
+          success:function(data){
+            $("#RES-BODY").html(data);
+          }
+      });
+   
+  });
+
+
+
+  });
+
+
+
+  </script>
+
+</body>
 </html>

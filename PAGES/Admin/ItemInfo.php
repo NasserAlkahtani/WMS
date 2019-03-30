@@ -50,7 +50,6 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.php"><?php   echo $_SESSION['whname']; ?></a>
 
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link Signout" href="../../INC/Signout.inc.php">Sign out</a>
@@ -163,7 +162,7 @@
 <h1 class="Name"> <?php echo $name ?> </h1>
 
 
-<form action="../../INC/updateEmp.inc.php" method="post" class="FORM">
+<form action="../../INC/updateItem.inc.php" method="post" class="FORM" style="margin-top:50px;">
 <div class="form-row">
 <div class="form-group col-md-6">
 <label for="inputEmail4">ID</label>
@@ -179,17 +178,17 @@
 
 <div class="form-group">
 <label for="inputAddress">location</label>
-<input <?php echo "value=".$loc?> type="text" class="form-control box_shadow" id="inputAddress" placeholder="" name = "Location" >
+<input <?php echo "value=".$loc?> type="text" class="form-control box_shadow" id="inputAddress" placeholder=""  name="Location" >
 </div>
 
 <div class="form-group">
 <label for="inputAddress2">Qty</label>
-<input <?php echo "value=".$qty?> type="number" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Qty" >
+<input <?php echo "value=".$qty?> type="number" class="form-control box_shadow" id="inputAddress2" placeholder=""   name="Qty" >
 </div>
 
 <div class="form-group">
 <label for="inputAddress2">Description</label>
-<input  value="<?php echo $desc ?>" style="height:150px;" type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Qty" >
+<input  value="<?php echo $desc ?>" style="height:150px;" type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Desc" >
 </div>
 
 
@@ -198,9 +197,11 @@
 <label for="inputCity"></label>
 <input style="display:none" type="text" class="form-control box_shadow" id="inputCity">
 <a class="BTNupdate btn btn-danger box_shadow"<?php
-echo 'href="../../INC/DeleteEmp.inc.php?id='.$ItemId.'"';
+echo 'href="../../INC/DeleteItem.inc.php?id='.$ItemId.'"';
 
  ?>
+
+ 
 >Delete Item</a></div>
 
 <div class="form-group col-md-4">
