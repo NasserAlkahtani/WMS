@@ -32,7 +32,7 @@ if(mysqli_num_rows($res1) > 0 ){
 
 
 
-$res = mysqli_query($conn,"INSERT INTO `items` (`fk_aid`, `name`, `location`, `qty` , `Dsc`) VALUES ('$fk_aid','$name','$loc','$qty',$dsc)");
+$res = mysqli_query($conn,"INSERT INTO `items` (`fk_aid`, `name`, `location`, `qty` , `Dsc`) VALUES ('$fk_aid','$name','$loc','$qty','$dsc')");
 
 
 if($res){
