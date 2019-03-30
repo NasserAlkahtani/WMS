@@ -127,8 +127,7 @@
    $ItemId = $_GET['id'];
    $name = ""; 
    $uname = "" ; 
-   $pass = "" ; 
-
+   
    $res = mysqli_query($conn,"SELECT * FROM items  WHERE id = '$ItemId'  ");
 
    while($row = mysqli_fetch_assoc($res)) {
@@ -136,7 +135,6 @@
     $name = $row['name']; 
     $loc =  $row['location'];
     $qty = (int)$row['qty'];
-    $desc = $row['Dsc'];
 
   }
 
@@ -144,6 +142,17 @@
 
 
    
+
+  
+  $res2 = mysqli_query($conn,"SELECT Dsc FROM items  WHERE id = '$ItemId'  ");
+
+  while($row = mysqli_fetch_assoc($res2)) {
+   
+  
+    $desc = (String)$row['Dsc'];
+
+ }
+
    
    ?>
 
@@ -180,7 +189,7 @@
 
 <div class="form-group">
 <label for="inputAddress2">Description</label>
-<input <?php echo "value=".$desc?> style="height:150px;" type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Qty" >
+<input  value="<?php echo $desc ?>" style="height:150px;" type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="Qty" >
 </div>
 
 
@@ -216,6 +225,9 @@ echo 'href="../../INC/DeleteEmp.inc.php?id='.$ItemId.'"';
 </div>
       
      
+
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
