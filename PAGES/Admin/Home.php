@@ -235,10 +235,10 @@ Wharehouse Left Space
    $CpacLeft =  (int)$Cpacity-(int)$TotalQty;
 
 
-   $PCint = (($CpacLeft/$Cpacity)*100)*2 ;
+   $PCint = (($CpacLeft/$Cpacity)*100)*2.5 ;
 
    $PCstring = "".(String)$PCint."";
-
+  
 
    $TEXTprec = "".(String)intval(($CpacLeft/$Cpacity)*100) ."" ;
    echo '

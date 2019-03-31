@@ -18,9 +18,15 @@ if($Pass1 == $Pass2){
 
     if($res){
                     
-                if (mysqli_num_rows($res) == 1) {
+                if (mysqli_num_rows($res) > 0) {
                     
-                    $_SESSION['erorr'] = "Email is Already used" ;
+                    $_SESSION["Msg"] = "
+
+                    <div class='alert alert-danger' role='alert'>
+                     email ( ".$Email." ) already exist 
+                    </div>
+                    
+                    " ;
                     header('location: ../PAGES/Signup.php');
                 
                 }else{
