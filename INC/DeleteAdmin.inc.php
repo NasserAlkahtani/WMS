@@ -4,7 +4,6 @@ $id = $_GET["id"];
 
 
 
-
 $res = mysqli_query($conn,"DELETE FROM admins WHERE id = '$id' ");
 
 if($res){

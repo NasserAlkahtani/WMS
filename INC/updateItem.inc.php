@@ -12,6 +12,41 @@ $id = $_POST['id'];
 
 
 
+$Cpacity = 0 ;
+$res3 = mysqli_query($conn,"SELECT Cpac FROM admins WHERE id = '$fk_id' ");
+while($row = mysqli_fetch_assoc($res3)) {
+ $Cpacity =  $row['Cpac'];
+
+}
+
+
+$TotalQty = 0 ;
+$res3 = mysqli_query($conn,"SELECT * FROM Items WHERE fk_aid = '$fk_id' ");
+while($row = mysqli_fetch_assoc($res3)) {
+
+
+  
+  $TotalQty += (int)$row['qty'] ;
+
+}
+
+$CpacLeft =  (int)$Cpacity-(int)$TotalQty;
+
+$cRes = mysqli_query($conn,"SELECT * FROM  `items` WHERE fk_aid='$fk_id' AND id = '$id' ");
+
+$PrevQty = 0 ;
+$iid = "" ;
+while($row2 = mysqli_fetch_assoc($cRes)) {
+    $PrevQty = (int)$row2["qty"];
+    $iname = $row2["name"];
+     $iid = $row2['id'];
+}
+
+if($CpacLeft >= $qty - $PrevQty ){
+
+
+
+
 
 $cRes = mysqli_query($conn,"SELECT * FROM  `items` WHERE `name`='$name' AND 'fk_aid'='$fk_id' ");
 
@@ -78,5 +113,20 @@ header("location: ../PAGES/Admin/ItemInfo.php?id=".$id." ");
 mysqli_close($conn);
 }
 
+
+}else{
+    $_SESSION["Msg"] = "
+
+    
+    <div class='alert alert-danger s' role='alert'>
+    
+     There is no Enoguh space  you can add space from my accout tab !
+    
+    </div>
+    " ;
+    
+    header("location: ../PAGES/Admin/ItemInfo.php?id=".$id." ");
+    
+}
 
 ?>

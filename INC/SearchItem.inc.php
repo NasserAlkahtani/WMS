@@ -10,7 +10,7 @@ $fk_aid = $_SESSION['id'];
 $output = " ";
 
 
-$res1 = mysqli_query($conn,"SELECT * FROM items WHERE fk_aid = '$fk_aid' AND name LIKE '%$q%' OR id LIKE '%$q%' ");
+$res1 = mysqli_query($conn,"SELECT * FROM items WHERE name LIKE '%$q%' AND fk_aid = '$fk_aid'  OR id LIKE '%$q%' AND fk_aid = '$fk_aid' ");
 
 
 if(mysqli_num_rows($res1) > 0){

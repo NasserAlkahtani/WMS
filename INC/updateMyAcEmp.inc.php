@@ -9,7 +9,7 @@ $name =  $_POST['name'];
 $uname = $_POST['uname'];
 $fk_aid = $_SESSION['id'] ;
 $id = $_SESSION['eid'];
-
+$phone = $_POST['phone'];
 
 
 
@@ -28,12 +28,19 @@ if(mysqli_num_rows($cRes) > 0 ){
 
     if($uname == $unameDB){
 
-        $res = mysqli_query($conn,"UPDATE `employees` SET `name`='$name',`uname`='$uname', `password`='$pass'
+        $res = mysqli_query($conn,"UPDATE `employees` SET `name`='$name',`uname`='$uname', `password`='$pass'  , `phone`='$phone'
         WHERE fk_aid = '$fk_aid' AND id = '$id' ");
 
 
 
 if($res){
+
+    
+    $_SESSION['name'] = $name;
+    $_SESSION['uname'] = $uname;
+    $_SESSION['epass'] = $pass;
+
+
 $_SESSION["Msg"] = "
 
 <div class='alert alert-success' role='alert'>
@@ -112,11 +119,18 @@ header("location: ../PAGES/Employee/Myaccount.php");
 
 
 $res = mysqli_query($conn,"UPDATE `employees` SET `name`='$name',`uname`='$uname', `password`='$pass'
-                           WHERE fk_aid = '$fk_aid' AND id = '$id' ");
+                          , `phone`='$phone' WHERE fk_aid = '$fk_aid' AND id = '$id' ");
 
 
 
 if($res){
+
+
+    $_SESSION['name'] = $name;
+    $_SESSION['uname'] = $uname;
+    $_SESSION['epass'] = $pass;
+
+
 $_SESSION["Msg"] = "
 
 <div class='alert alert-success' role='alert'>

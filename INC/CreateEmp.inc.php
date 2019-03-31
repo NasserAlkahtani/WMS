@@ -7,11 +7,17 @@ session_start();
 $name = $_POST['name'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
+$phone = $_POST['phone'];
 $fk_aid = $_SESSION['id'];
 
 $res1 = mysqli_query($conn,"SELECT * FROM employees WHERE uname = '$uname'");
 
+
+
+
 if(mysqli_num_rows($res1) > 0 ){
+
+
     $_SESSION["Msg"] = "
 
     <div class='alert alert-danger' role='alert'>
@@ -26,7 +32,7 @@ if(mysqli_num_rows($res1) > 0 ){
 
 
 
-$res = mysqli_query($conn,"INSERT INTO `employees`(`fk_aid`, `name`, `uname`, `password`) VALUES ('$fk_aid','$name','$uname','$pass')");
+$res = mysqli_query($conn,"INSERT INTO `employees`(`fk_aid`, `name`, `uname`, `password` , `phone`) VALUES ('$fk_aid','$name','$uname','$pass' , '$phone')");
 
 
 if($res){

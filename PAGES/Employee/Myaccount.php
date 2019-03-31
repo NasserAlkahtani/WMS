@@ -129,7 +129,7 @@ if(mysqli_num_rows($res) > 0 ){
       $name = $row["name"];
       $uname  = $row["uname"] ;
       $pass = $row["password"];
-      
+      $phone = $row["phone"];
 
     }
 
@@ -166,11 +166,24 @@ if(mysqli_num_rows($res) > 0 ){
     <label for="inputCity">Password</label>
     <input name="pass" type="text"  <?php     echo  "value=".$pass ?>  class="form-control box_shadow" id="inputCity">
     </div>
+
+    <div class="form-group col-md-4">
+    <label for="inputCity">Phone</label>
+    <input name="phone" type="text"  <?php     echo  "value=".$phone ?>  class="form-control box_shadow" id="inputCity">
+    </div>
+   
+
     <div class="form-group col-md-2">
       <label for="inputZip">Edit</label>
       <input type="submit" value="update" class="form-control box_shadow btn btn-info" id="inputZip">
     </div>
+
+
+
   </div>
+
+
+  
   <div class="form-group">
     <div class="form-check">
      

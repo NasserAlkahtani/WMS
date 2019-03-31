@@ -135,6 +135,7 @@
     $name = $row['name']; 
     $uname =  $row['uname'];
     $pass = $row['password'];
+    $phone = $row['phone'];
 
   }
 
@@ -177,6 +178,13 @@
 <label for="inputAddress2">Password</label>
 <input <?php echo "value=".$pass?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="pass" >
 </div>
+
+
+<div class="form-group">
+<label for="inputAddress2">Phone number</label>
+<input <?php echo "value=".$phone?> type="text" class="form-control box_shadow" id="inputAddress2" placeholder=""  name="phone" >
+</div>
+
 
 <div class="form-row">
 <div class="form-group col-md-6">

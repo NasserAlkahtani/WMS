@@ -194,6 +194,10 @@ textarea{
     <div class="col">
       <input name="pass"type="text" class="form-control" placeholder="Password ">
     </div>
+
+    <div  style="width:100%;margin-left:5px;margin-right:5px;">
+      <input style="margin-top:30px;width:100%" name="phone" type="text" class="form-control" placeholder="Phone number">
+    </div>
   </div>
 
   <button type="submit" class="BTNCreate btn btn-info">Create</button>
@@ -203,11 +207,11 @@ textarea{
 
       </div>
       
-      <div  style="color: rgb(255, 174, 0);" class="MAIN_CARD card bg-dark box_shadow">
+      <div  style="color: rgb(255, 174, 0);height:256px;" class="MAIN_CARD card bg-dark box_shadow">
         
        Generate Random Employee
        
-<form style="margin-bottom:57px;" class="SPI_FORM" action="../../INC/GenerateEmp.inc.php" method="post">
+<form style="margin-top:80px;width:100%" class="SPI_FORM" action="../../INC/GenerateEmp.inc.php" method="post">
   <div class="form-row">
     <div class="col-7">
       <input name="NumOfEmp" type="number" class="form-control" placeholder="Number of Employees">

@@ -188,7 +188,7 @@
       </label>
     </div>
   </div>
-  <a class="BTNupdate btn btn-danger box_shadow" <?php
+  <a onclick="return  confirm('Are you sure you want to delete your account this will delete all items and employees information and you account')" class="BTNupdate btn btn-danger box_shadow" <?php
 
 echo 'href="../../INC/DeleteAdmin.inc.php?id='.$id.'"';
 

@@ -372,7 +372,7 @@ Top 3 items in terms of Qty
         <th scope="row">'.$row["id"].'</th>
         <td>'.$row["name"].'</td>
         <td>'.$row["qty"].'</td>
-        <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+        <td><a href="ItemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
         </tr>
       ' ; 
   
@@ -451,7 +451,7 @@ Items with Qty less than 10
         <th scope="row">'.$row["id"].'</th>
         <td>'.$row["name"].'</td>
         <td>'.$row["qty"].'</td>
-        <td><a href="EmpInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
+        <td><a href="ItemInfo.php?id='.$row["id"].'"><button type="button" class="btn btn-info">More</button></a> </td>
         </tr>
       ' ; 
   

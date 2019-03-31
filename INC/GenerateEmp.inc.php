@@ -45,7 +45,7 @@ $res = false ;
 
    }else{
 
-        $res = mysqli_query($conn,"INSERT INTO `employees`(`fk_aid`, `name`, `uname`, `password`) VALUES ('$AdminId','$name','$uname','$pass')");
+        $res = mysqli_query($conn,"INSERT INTO `employees`(`fk_aid`, `name`, `uname`, `password` ,`phone`) VALUES ('$AdminId','$name','$uname','$pass','+966-000-000-000')");
         
         $i = $i + 1 ;     
         
