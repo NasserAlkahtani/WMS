@@ -9,11 +9,40 @@ $eid = $_SESSION["eid"]; // emp id
 $id = $_POST['id']; // item id
 
 
+
+$Cpacity = 0 ;
+$res3 = mysqli_query($conn,"SELECT Cpac FROM admins WHERE id = '$fk_id' ");
+while($row = mysqli_fetch_assoc($res3)) {
+ $Cpacity =  $row['Cpac'];
+
+}
+
+
+$TotalQty = 0 ;
+$res3 = mysqli_query($conn,"SELECT * FROM Items WHERE fk_aid = '$fk_id' ");
+while($row = mysqli_fetch_assoc($res3)) {
+
+
+  
+  $TotalQty += (int)$row['qty'] ;
+
+}
+
+$CpacLeft =  (int)$Cpacity-(int)$TotalQty;
+
+
+
+
+
+    
+
 $cRes = mysqli_query($conn,"SELECT * FROM  `items` WHERE fk_aid='$fk_id' AND id = '$id' ");
 
 if($cRes){
 
 
+   
+  
     $PrevQty = 0 ;
     $iid = "" ;
     while($row2 = mysqli_fetch_assoc($cRes)) {
@@ -21,6 +50,10 @@ if($cRes){
         $iname = $row2["name"];
          $iid = $row2['id'];
     }
+
+
+    
+    if($qty-$PrevQty <= $CpacLeft){
 
 
 
@@ -87,6 +120,24 @@ header("location: ../PAGES/Employee/ItemInfo.php?id=".$id." ");
 
 mysqli_close($conn);
 
+}else{
+    $_SESSION["Msg"] = "
+
+    <div class='alert alert-danger s' role='alert'>
+    
+     There is No Enoguh space  !
+    
+    </div>
+    
+    " ;
+    
+    header("location: ../PAGES/Employee/ItemInfo.php?id=".$id." ");
+    
+    
+}
+
+
+
 
 }else{
 
@@ -106,6 +157,9 @@ mysqli_close($conn);
     
 
 }
+
+
+
 
 
 ?>

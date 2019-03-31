@@ -13,7 +13,7 @@ $id = $_SESSION['eid'];
 
 
 
-$cRes = mysqli_query($conn,"SELECT * FROM  `employees` WHERE `uname`='$uname' ");
+$cRes = mysqli_query($conn,"SELECT * FROM  `employees` WHERE `id`='$id' ");
 
 
 if(mysqli_num_rows($cRes) > 0 ){
@@ -25,7 +25,6 @@ if(mysqli_num_rows($cRes) > 0 ){
         $unameDB = $row["uname"];
 
     }
-
 
     if($uname == $unameDB){
 
@@ -69,7 +68,10 @@ header("location: ../PAGES/Employee/Myaccount.php");
 
 
 
-mysqli_close($conn);
+              mysqli_close($conn);
+
+
+
     }else{
         $_SESSION["Msg"] = "
 
@@ -86,7 +88,28 @@ mysqli_close($conn);
     }
    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }else{
+
+
 
 $res = mysqli_query($conn,"UPDATE `employees` SET `name`='$name',`uname`='$uname', `password`='$pass'
                            WHERE fk_aid = '$fk_aid' AND id = '$id' ");
