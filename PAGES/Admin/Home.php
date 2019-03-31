@@ -27,7 +27,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -43,6 +42,8 @@
     <!-- Custom styles for this template -->
     <link href="../../STYLES/Home.css" rel="stylesheet">
     <link href="../../STYLES/GLOBAL.css" rel="stylesheet">
+    <link href="../../STYLES/css-circular-prog-bar.css" rel="stylesheet">
+
 
   </head>
   <body>
@@ -145,12 +146,12 @@ Wharehouse Capacity
 
 
 
-<div style="color: rgb(8, 143, 64);" class="WHCAPACITY_CARD card bg-dark box_shadow">
+<div style="color:#1AC8DC;" class="WHCAPACITY_CARD card bg-dark box_shadow">
 
 Wharehouse Space Used
 
 <div class="progress PROGRESS_BAR">
-   <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="25"  aria-valuemin="0" aria-valuemax="100"    <?php 
+   <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="25"  aria-valuemin="0" aria-valuemax="100"    <?php 
    
 
    
@@ -234,9 +235,31 @@ Wharehouse Left Space
    $CpacLeft =  (int)$Cpacity-(int)$TotalQty;
 
 
-   echo $CpacLeft; 
+   $PCint = (($CpacLeft/$Cpacity)*100)*2 ;
 
+   $PCstring = "".(String)$PCint."";
+
+
+   $TEXTprec = "".(String)intval(($CpacLeft/$Cpacity)*100) ."" ;
+   echo '
+
+   <svg id="svg" viewbox="0 0 100 100">
+  <circle cx="50" cy="50" r="45" fill="#1FE8D6"/>
+  <path fill="none" stroke-linecap="round" stroke-width="5" stroke="#fff"
+        stroke-dasharray="'.$PCstring.',250.4"
+        d="M50 10
+           a 40 40 0 0 1 0 80
+           a 40 40 0 0 1 0 -80"/>
+  <text x="50" y="50" text-anchor="middle" dy="7" font-size="20">'.$TEXTprec.'%</text>
+</svg>
+
+
+
+ 
+'
    ?>
+
+
 </div>
 
 </div>
@@ -494,7 +517,27 @@ Items with Qty less than 10
     
 
 
-   
+<script type="text/javascript">
+
+var count = $(('#count'));
+$({ Counter: 0 }).animate({ Counter: count.text() }, {
+  duration: 5000,
+  easing: 'linear',
+  step: function () {
+    count.text(Math.ceil(this.Counter)+ "%");
+  }
+});
+
+var s = Snap('#animated');
+var progress = s.select('#progress');
+
+progress.attr({strokeDasharray: '0, 251.2'});
+Snap.animate(0,251.2, function( value ) {
+    progress.attr({ 'stroke-dasharray':value+',251.2'});
+}, 5000);
+</script>   
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>

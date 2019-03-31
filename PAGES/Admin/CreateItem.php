@@ -129,12 +129,12 @@
 
 <div style="width:30%;height:374px;float:left" >
 
-<div style="color: rgb(8, 143, 64);" class="WHCAPACITY_CARD card bg-dark box_shadow">
+<div style="color: #1AC8DC;" class="WHCAPACITY_CARD card bg-dark box_shadow">
 
 Wharehouse Space Used
 
 <div class="progress PROGRESS_BAR">
-   <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="25"  aria-valuemin="0" aria-valuemax="100"    <?php 
+   <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="25"  aria-valuemin="0" aria-valuemax="100"    <?php 
    
 
    
